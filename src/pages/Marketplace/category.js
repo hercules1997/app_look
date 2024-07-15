@@ -6,12 +6,13 @@ import Productlist from '../../components/Product/list'
 import { useNavigation } from '@react-navigation/native'
 
 const Category = () => {
-  const { navigate } = useNavigation()
+  const navigation = useNavigation()
 
   return (
     <Box align="center">
       <Header
         title="Categoria X"
+        onPress={() => navigation.openDrawer()}
         right={() => (
           <Touchable
             width="70px"

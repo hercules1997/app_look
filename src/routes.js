@@ -79,7 +79,7 @@ const DrawerComponent = () => {
         }}
         component={Feed}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Categories"
         options={{
           headerShown: false,
@@ -88,15 +88,15 @@ const DrawerComponent = () => {
           )
         }}
         component={Catergory}
-      />
+      /> */}
     </Drawer.Navigator>
   )
 }
-
+     //TODO ***Não esquecer de mudar a inicialização***
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Categories">
+      <Stack.Navigator initialRouteName="Product">
         <Stack.Screen
           options={{headerShown: false}}
           name="Home"
@@ -135,11 +135,11 @@ const Routes = () => {
           name="Category"
           component={Catergory}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{headerShown: false}}
           name="Categories"
           component={DrawerComponent}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   )

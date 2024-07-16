@@ -62,7 +62,7 @@ const Product = () => {
             title="Size"
             options={optionSize}
             initialValue="M"
-            onChange={value => alert('Tamanho selecionado ' + value)}
+            onChange={value => alert(`Tamanho ${value} selecionado`)}
           />
           <Spacer size="30px" />
 

@@ -17,6 +17,7 @@ import utils from './utils'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
 import Marketplace from './pages/Marketplace'
+import Cart from './pages/Cart'
 import Catergory from './pages/Marketplace/category'
 import Product from './pages/Marketplace/product'
 
@@ -92,11 +93,11 @@ const DrawerComponent = () => {
     </Drawer.Navigator>
   )
 }
-     //TODO ***Não esquecer de mudar a inicialização***
+//TODO ***Não esquecer de mudar a inicialização***
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Product">
+      <Stack.Navigator initialRouteName="Cart">
         <Stack.Screen
           options={{headerShown: false}}
           name="Home"
@@ -135,11 +136,11 @@ const Routes = () => {
           name="Category"
           component={Catergory}
         />
-        {/* <Stack.Screen
+        <Stack.Screen
           options={{headerShown: false}}
-          name="Categories"
-          component={DrawerComponent}
-        /> */}
+          name="Cart"
+          component={Cart}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )

@@ -11,7 +11,7 @@ const Cart = () => {
   return (
     <>
       <Header title="Cart" goBack></Header>
-      <Tabs allTabs={listTabs} active="cart" />
+      <Tabs allTabs={listTabs} active="payment" />
     </>
   )
 }

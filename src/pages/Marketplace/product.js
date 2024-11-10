@@ -1,5 +1,7 @@
 import React from 'react'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
+import {useNavigation} from '@react-navigation/native'
+
 
 import Header from '../../components/Header'
 import {Box, Button, Spacer, Text, Title, Touchable} from '../../components'
@@ -8,6 +10,7 @@ import utils from '../../utils'
 import {colors} from '../../styles/theme.json'
 import Picker from '../../components/Picker'
 const Product = () => {
+  const {navigate} = useNavigation()
   const optionSize = [
     {label: 'P', value: 'P'},
     {label: 'M', value: 'M'},
@@ -66,7 +69,7 @@ const Product = () => {
           />
           <Spacer size="30px" />
 
-          <Button block>
+          <Button block onPress={() => navigate('Cart')}>
             <Text>Add to Card</Text>
           </Button>
         </Box>

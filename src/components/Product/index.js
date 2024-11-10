@@ -2,16 +2,16 @@ import React from 'react'
 import {Box, Touchable, Text, Cover, Spacer} from '..'
 import {useNavigation} from '@react-navigation/native'
 
-const Product = ({cover, brand, title, price}) => {
+const Product = ({cover, brand, title, price, selected = false}) => {
   const navigation = useNavigation()
 
   return (
     <Touchable
       onPress={() => navigation.navigate('Product')}
-      hasPadding
+      hasPadding={!selected}
       row
       background="light"
-      spacing="0px 0px 5px 0px"
+      spacing={selected ? '5px 0' : '0px 0px 5px 0px'}
       justifyContent="center"
       alignItems="center"
       fluid
@@ -30,14 +30,19 @@ const Product = ({cover, brand, title, price}) => {
         justifyContent="center"
         style={{paddingTop: 0, paddingBottom: 0}}
       >
-        <Text color="dark">{brand}</Text>
+        {!selected && <Text color="dark">{brand}</Text>}
         <Text color="dark" bold>
           {title}
         </Text>
         <Spacer />
+        {selected && (
+          <Box>
+            <Text color="dark">Size: GG</Text>
+          </Box>
+        )}
         <Box row width="100%" justify="space-between">
           <Text color="dark">{price}</Text>
-          <Text color="danger">Add to Cart</Text>
+          <Text color="danger">{selected ? "Remove" : "Add to Cart"}</Text>
         </Box>
       </Box>
     </Touchable>

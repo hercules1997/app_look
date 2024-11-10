@@ -13,6 +13,7 @@ import Home from './pages/Home'
 import SingIn from './pages/SingIn'
 import SingUp from './pages/SingUp'
 import Feed from './pages/Feed'
+import Orders from './pages/Orders'
 import utils from './utils'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 
@@ -78,7 +79,7 @@ const DrawerComponent = () => {
             <Icon name="basket" color={color} size={18} />
           )
         }}
-        component={Feed}
+        component={Orders}
       />
       {/* <Drawer.Screen
         name="Categories"
@@ -97,7 +98,7 @@ const DrawerComponent = () => {
 const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Cart">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           options={{headerShown: false}}
           name="Home"
@@ -140,6 +141,11 @@ const Routes = () => {
           options={{headerShown: false}}
           name="Cart"
           component={Cart}
+        />
+        <Stack.Screen
+          options={{headerShown: false}}
+          name="Orders"
+          component={Orders}
         />
       </Stack.Navigator>
     </NavigationContainer>

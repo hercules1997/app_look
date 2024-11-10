@@ -128,7 +128,7 @@ export const Cover = styled.ImageBackground.attrs(props => ({
   border-radius: ${props =>
     props.radius || (props.circle ? props.width || '60px' : '3px')};
   border: ${props => props.border || 'none'};
-  background-color: ${colors.muted};
+  background-color: ${props => props.background || colors.muted};
   flex-direction: ${props => (props.row ? 'row' : 'column')};
   justify-content: ${props => props.justify || 'flex-start'};
   align-items: ${props => props.align || 'flex-start'};

@@ -11,8 +11,8 @@ const Categorylist = ({categories}) => {
       {categories?.map(category => (
         <Category
           title={category?.title}
-          description={categories?.items}
-          cover={categories?.cover}
+          description={category?.items}
+          cover={category?.cover}
         />
       ))}
     </ScrollView>

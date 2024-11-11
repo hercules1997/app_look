@@ -7,8 +7,9 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {useNavigation} from '@react-navigation/native'
 import utils from '../../utils'
 
-const Header = ({title = 'Explore', right = null, goBack = false }) => {
+const Header = ({title = 'Explore', right = null, goBack = false}) => {
   const navigation = useNavigation()
+
   return (
     <View
       style={{

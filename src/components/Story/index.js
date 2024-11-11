@@ -1,7 +1,8 @@
 import React from 'react'
 import {Box, Text, Cover, Touchable} from '..'
 import {colors} from '../../styles/theme.json'
-const Story = () => {
+import moment from 'moment'
+const Story = ({story}) => {
   return (
     <Touchable
       onPress={() => alert('teste')}
@@ -11,11 +12,7 @@ const Story = () => {
       width="150px"
       spacing="0px 10px 0px"
     >
-      <Cover
-        width="100%"
-        height="100%"
-        image="https://media.vogue.co.uk/photos/60315dc888f7f3eda2ddfcca/2:3/w_2560%2Cc_limit/PIECES%2520OF%2520A%2520WOMAN%25202.jpg"
-      >
+      <Cover width="100%" height="100%" image={story?.cover}>
         <Box
           fluid
           hasPadding
@@ -27,13 +24,13 @@ const Story = () => {
             height="40px"
             circle
             border={`${colors.light}`}
-            image="https://media.vogue.co.uk/photos/60315dc888f7f3eda2ddfcca/2:3/w_2560%2Cc_limit/PIECES%2520OF%2520A%2520WOMAN%25202.jpg"
+            image={story?.owner?.photo}
           />
 
           <Box height="50px" justify="flex-end">
-            <Text color="light">Julia Ficher</Text>
+            <Text color="light">{story?.owner?.username}</Text>
             <Text color="light" variant="small">
-              2 mins ago
+              {moment(story?.createdAt).fromNow()}
             </Text>
           </Box>
         </Box>

@@ -5,7 +5,7 @@ import {colors} from '../../styles/theme.json'
 
 import {useNavigation} from '@react-navigation/native'
 
-const Category = ({title, description}) => {
+const Category = ({title, description, cover}) => {
   const {navigate} = useNavigation()
 
   return (
@@ -16,11 +16,7 @@ const Category = ({title, description}) => {
       radius="10px"
       spacing="10px 0px"
     >
-      <Cover
-        width="100%"
-        height="100%"
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-pRuJI6P0hoMZi2BO7IKqUxWnjr-cOitwlQ&usqp=CAU"
-      >
+      <Cover width="100%" height="100%" image={cover}>
         <Box
           width="100%"
           justify="center"

@@ -1,12 +1,35 @@
-import React from 'react'
-import { Touchable} from '../../components'
+import React, {useEffect, useState} from 'react'
+import {Touchable} from '../../components'
 import Header from '../../components/Header'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
-import {useNavigation} from '@react-navigation/native'
 import Categorylist from '../../components/Category/list'
+import api from '../../services/api'
+import Empty from '../../components/Empty'
+const Marketplace = ({navigation}) => {
+  const [loading, setLoading] = useState(false)
+  const [categories, setCategories] = useState([])
+  console.log(categories)
+  const getCategories = async () => {
+    try {
+      setLoading(true)
+      setTimeout(async () => {
+        const {data: categoryData} = await api.get('/categories')
+        setCategories(categoryData)
+        setLoading(false)
+      }, 2000)
+    } catch (error) {
+      alert(err.message)
+    }
+  }
 
-const Marketplace = () => {
-  const {navigate} = useNavigation()
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getCategories()
+
+      return unsubscribe
+    })
+  }, [navigation])
+
   return (
     <>
       <Header
@@ -15,13 +38,16 @@ const Marketplace = () => {
           <Touchable
             width="70px"
             hasPadding
-            onPress={() => navigate('Category')}
+            onPress={() => navigation.navigate('Cart')}
           >
             <Icon name="bag" size={25} />
           </Touchable>
         )}
       />
-      <Categorylist />
+      {loading && <Empty loading />}
+      {!loading && (
+        <>{categories && <Categorylist categories={categories} />}</>
+      )}
     </>
   )
 }

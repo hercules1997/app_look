@@ -3,7 +3,7 @@ import React from 'react'
 import {Box, ScrollView, Text} from '..'
 import Story from '.'
 
-export default function StoryList() {
+export default function StoryList({stories}) {
   return (
     <Box fluid height="260px">
       <Box row fluid justify="space-between" height="60px" hasPadding>
@@ -14,9 +14,9 @@ export default function StoryList() {
           Show all
         </Text>
       </Box>
-      <ScrollView horizontal style={{paddingLeft: 20}}  >
-        {Array.from(Array(20))?.map(item => (
-          <Story />
+      <ScrollView horizontal style={{paddingLeft: 20}}>
+        {stories?.map(story => (
+          <Story story={story} />
         ))}
       </ScrollView>
     </Box>

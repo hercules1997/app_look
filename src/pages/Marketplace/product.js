@@ -2,15 +2,13 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
 import {useNavigation} from '@react-navigation/native'
 
-
 import Header from '../../components/Header'
 import {Box, Button, Spacer, Text, Title, Touchable} from '../../components'
 import {StretchyScrollView} from 'react-native-stretchy'
 import utils from '../../utils'
 import {colors} from '../../styles/theme.json'
 import Picker from '../../components/Picker'
-const Product = () => {
-  const {navigate} = useNavigation()
+const Product = ({navigation: {navigate}}) => {
   const optionSize = [
     {label: 'P', value: 'P'},
     {label: 'M', value: 'M'},
@@ -25,7 +23,7 @@ const Product = () => {
         title="Produto X"
         goBack
         right={() => (
-          <Touchable width="70px" hasPadding>
+          <Touchable width="70px" hasPadding onPress={() => navigate('Cart')}>
             <Icon name="bag" size={25} />
           </Touchable>
         )}

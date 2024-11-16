@@ -39,7 +39,7 @@ const CustomDrawerComponent = props => {
 const DrawerComponent = () => {
   return (
     <Drawer.Navigator
-      initialRouteName="Feed"
+      initialRouteName="Marketplace"
       drawerContent={props => <CustomDrawerComponent {...props} />}
       screenOptions={{
         drawerActiveBackgroundColor: colors.primary,

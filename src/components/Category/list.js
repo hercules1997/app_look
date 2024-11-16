@@ -9,11 +9,7 @@ const Categorylist = ({categories}) => {
       style={{paddingLeft: 20, paddingTop: 20, paddingRight: 20}}
     >
       {categories?.map(category => (
-        <Category
-          title={category?.title}
-          description={category?.items}
-          cover={category?.cover}
-        />
+        <Category category={category} />
       ))}
     </ScrollView>
   )

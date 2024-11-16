@@ -90,6 +90,12 @@
       "cover": "https://picsum.photos/500",
       "title": "Womans",
       "items": 1232
+    },
+    {
+      "id": "2",
+      "cover": "https://picsum.photos/501",
+      "title": "Man",
+      "items": 555555
     }
   ],
   "products": [
@@ -127,7 +133,7 @@
       "price": 2500,
       "brand": "Gucci",
       "cover": "https://picsum.photos/500",
-      "categoryId": 1,
+      "categoryId": 2,
       "type": "Balaclava",
       "description": "Awesome product.",
       "sizes": [

@@ -8,7 +8,6 @@ import Empty from '../../components/Empty'
 const Marketplace = ({navigation}) => {
   const [loading, setLoading] = useState(false)
   const [categories, setCategories] = useState([])
-  console.log(categories)
   const getCategories = async () => {
     try {
       setLoading(true)
@@ -16,7 +15,7 @@ const Marketplace = ({navigation}) => {
         const {data: categoryData} = await api.get('/categories')
         setCategories(categoryData)
         setLoading(false)
-      }, 2000)
+      }, 900)
     } catch (error) {
       alert(err.message)
     }

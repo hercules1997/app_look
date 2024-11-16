@@ -20,7 +20,7 @@ const Feed = ({navigation}) => {
         const {data: feedData} = await api.get('/feed')
         setFeed(feedData)
         setLoading(false)
-      }, 2000)
+      }, 900)
     } catch (error) {
       alert(err.message)
     }

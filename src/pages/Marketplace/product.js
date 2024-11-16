@@ -1,26 +1,27 @@
-import React from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import Icon from 'react-native-vector-icons/SimpleLineIcons'
-import {useNavigation} from '@react-navigation/native'
 
+import {AppContext} from '../../contexts/app'
 import Header from '../../components/Header'
 import {Box, Button, Spacer, Text, Title, Touchable} from '../../components'
 import {StretchyScrollView} from 'react-native-stretchy'
 import utils from '../../utils'
 import {colors} from '../../styles/theme.json'
 import Picker from '../../components/Picker'
-const Product = ({navigation: {navigate}}) => {
-  const optionSize = [
-    {label: 'P', value: 'P'},
-    {label: 'M', value: 'M'},
-    {label: 'G', value: 'G'},
-    {label: 'XG', value: 'XG'},
-    {label: 'XXG', value: 'XXG'}
-  ]
+const Product = ({navigation, route}) => {
+  const {addToCart, cart} = useContext(AppContext)
+  const {product} = route?.params
+  const [size, setSize] = useState(null)
+ 
+
+  useEffect(() => {
+    setSize(product?.sizes?.[0]?.value)
+  }, [product, cart])
 
   return (
     <>
       <Header
-        title="Produto X"
+        title={product?.title}
         goBack
         right={() => (
           <Touchable width="70px" hasPadding onPress={() => navigate('Cart')}>
@@ -30,44 +31,40 @@ const Product = ({navigation: {navigate}}) => {
       />
       <StretchyScrollView
         image={{
-          uri: 'https://media.vogue.co.uk/photos/60315dc888f7f3eda2ddfcca/2:3/w_2560%2Cc_limit/PIECES%2520OF%2520A%2520WOMAN%25202.jpg'
+          uri: product?.cover
         }}
         imageOverlay={<Box background={utils.toAlpha(colors.dark, 40)}></Box>}
         foreground={
           <>
             <Box hasPadding justify="flex-end">
               <Title bold color="light" variant="big">
-                R$ 100,00
+                $ {product?.price}
               </Title>
             </Box>
           </>
         }
       >
         <Box hasPadding background="light">
-          <Text color="black">TSHIRT</Text>
+          <Text color="black">{product?.type}</Text>
           <Spacer size="30px" />
-          <Title color="black">A.P.C. Collection Spring 2020</Title>
+          <Title color="black">{product?.title}</Title>
           <Spacer size="30px" />
-          <Text color="dark">
-            Etiam gravida justo sit amet ipsum tincidunt, sed rutrum ante
-            pulvinar. Sed eget quam nec risus consequat faucibus. Aliquam id dui
-            placerat, consequat mauris non, efficitur erat. Curabitur
-            ullamcorper a quam sed luctus. Sed quis tempus elit. Aenean
-            tincidunt, lacus ut condimentum vehicula, nunc leo elementum odio, a
-            vehicula metus urna eu massa. Suspendisse a iaculis quam. Curabitur
-            lacinia, ligula facilisis congue volutpat, diam felis rutrum quam,
-            et facilisis ante massa sed risus
-          </Text>
+          <Text color="dark">{product?.description}</Text>
           <Spacer size="30px" />
           <Picker
             title="Size"
-            options={optionSize}
-            initialValue="M"
-            onChange={value => alert(`Tamanho ${value} selecionado`)}
+            options={product?.sizes}
+            initialValue={product?.sizes?.[0]?.value}
+            onChange={value => setSize(value)}
           />
           <Spacer size="30px" />
 
-          <Button block onPress={() => navigate('Cart')}>
+          <Button
+            block
+            onPress={() =>
+              addToCart({...product, size}, navigation.navigate('Cart'))
+            }
+          >
             <Text>Add to Card</Text>
           </Button>
         </Box>

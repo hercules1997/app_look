@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 
 import Header from '../../components/Header'
 import Tabs from '../../components/Tabs'
@@ -8,8 +8,12 @@ import utils from '../../utils'
 import {colors} from '../../styles/theme.json'
 import PaymentForm from '../../components/Forms/payment'
 import CongratsModal from '../../components/Modals/congration'
+
+import {AppContext} from '../../contexts/app'
+
 const Cart = () => {
   const [tab, setTab] = useState('cart')
+  const {cart, removeFromCart} = useContext(AppContext)
 
   const [showCongrats, setShowCongrats] = useState(false)
   const listTabs = [
@@ -29,14 +33,8 @@ const Cart = () => {
 
         {tab === 'cart' && (
           <>
-            {Array.from(Array(3))?.map(item => (
-              <Product
-                brand="Carlos Alberto"
-                price="$2200"
-                title="Large Decription"
-                cover="https://media.vogue.co.uk/photos/60315dc888f7f3eda2ddfcca/2:3/w_2560%2Cc_limit/PIECES%2520OF%2520A%2520WOMAN%25202.jpg"
-                selected
-              />
+            {cart?.map(product => (
+              <Product product={product} selected />
             ))}
             <Spacer size="30px" />
 
@@ -119,7 +117,12 @@ const Cart = () => {
               onChange={creditCardData => console.log(creditCardData)}
             />
             <Spacer size="30px" />
-            <Button block onPress={() => {setShowCongrats(true)}}>
+            <Button
+              block
+              onPress={() => {
+                setShowCongrats(true)
+              }}
+            >
               <Text color="light">Confirmation</Text>
             </Button>
             <Spacer size="30px" />
